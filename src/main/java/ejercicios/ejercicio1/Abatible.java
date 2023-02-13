@@ -17,12 +17,14 @@ public class Abatible  extends Ventana{
         super(estado);
     }
 
-    public void abrirVentana(){
+    @Override
+    public void abrir() {
         System.out.println("Se abre en forma de abanico");
         this.setEstado(Estado.ABIERTA);
     }
-    
-    public void cerrarVentana(){
+
+    @Override
+    public void cerrar() {
         System.out.println("Se cierra en forma de abanico");
         this.setEstado(Estado.CERRADA);
     }

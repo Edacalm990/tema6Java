@@ -8,7 +8,7 @@ package ejercicios.ejercicio1;
  *
  * @author eli
  */
-public class Ventana {
+public abstract class Ventana {
     
     private Estado estado;
 
@@ -29,11 +29,8 @@ public class Ventana {
     }
 
     
-    public void abrirVentana () {
-    this.estado=estado.ABIERTA;
-    }
+    public abstract void abrir ();
     
-    public void cerrarVentana () {
-    this.estado=estado.CERRADA;
-    }
+    public abstract void cerrar ();
+    
 }

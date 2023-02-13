@@ -23,12 +23,16 @@ public class Corredera extends Ventana {
         return persiana;
     }
 
-    public void abrirPersiana() {
-        this.persiana.abrirPersiana();
+    @Override
+    public void abrir() {
+        this.abrir();
     }
-    
-    public void cerrarPersiana(){
-        this.persiana.bajarPersiana();
+
+    @Override
+    public void cerrar() {
+        this.abrir();
     }
+
+
 
 }

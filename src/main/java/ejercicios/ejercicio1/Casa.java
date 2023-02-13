@@ -62,9 +62,9 @@ public class Casa {
     public boolean abrirVentana(int posicion) {
         if (posicion > 0 && posicion < ventanas.size()) {
             if (this.ventanas.get(posicion) instanceof Abatible) {
-                ((Abatible)ventanas.get(posicion)).abrirVentana();
+                ((Abatible)ventanas.get(posicion)).abrir();
             } else {
-                this.ventanas.get(posicion + 1).abrirVentana();
+                this.ventanas.get(posicion + 1).abrir();
                 return true;
             }
         }
@@ -73,7 +73,7 @@ public class Casa {
 
     public boolean cerrarVentana(int posicion) {
         if (posicion > 0 && posicion < ventanas.size()) {
-            this.ventanas.get(posicion + 1).cerrarVentana();
+            this.ventanas.get(posicion + 1).cerrar();
             return true;
         }
         return false;
@@ -97,16 +97,4 @@ public class Casa {
             this.puerta.abrirPuerta();
         }
     }
-
-  
-//
-//
-//    public List<Calefactor> getCalefactor() {
-//        return calefactor;
-//    }
-//
-//    public Puerta getPuertas() {
-//        return puerta;
-//    }
-
 
