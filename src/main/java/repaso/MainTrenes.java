@@ -55,6 +55,8 @@ public class MainTrenes {
                 %s
                  """.formatted(key, value.toString());
         }
+
+        //listaTrenes.forEach((key,value) -> System.out.println(key+" "+value));
         return tmp;
     }
 

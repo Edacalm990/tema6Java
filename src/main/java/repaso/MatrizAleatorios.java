@@ -5,6 +5,8 @@
 package repaso;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -65,11 +67,14 @@ public class MatrizAleatorios {
     public static int[][] aleatorios(int numero, int elevado) {
         // creo un arrayList con numeros consecutivos hasta llegar a n^2
         int numeroElevado = (int) Math.pow(numero, elevado);
-        ArrayList<Integer> listaNumeros = new ArrayList<>(numeroElevado);
+        List<Integer> listaNumeros = new ArrayList<>(numeroElevado);
+        
         for (int i = 1; i <= numeroElevado; i++) {
             listaNumeros.add(i);
         }
 
+        // aqui se mezcla lista
+        //Collections.shuffle(listaNumeros);
         // creo una matriz de NxN vacia
         int[][] listaAleatorios = new int[numero][numero];
 
@@ -91,7 +96,7 @@ public class MatrizAleatorios {
     public static void imprimirMatriz(int[][] matriz) {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                System.out.print(matriz[i][j] + " ");
+                System.out.print("\t"+matriz[i][j]);
             }
             System.out.println("");
         }

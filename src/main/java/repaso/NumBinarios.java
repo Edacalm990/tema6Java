@@ -74,9 +74,11 @@ public class NumBinarios {
                 if (matriz[i - 1][j - 1] == 1
                         && matriz[i - 1][j + 1] == 1
                         && matriz[i + 1][j - 1] == 1
-                        && matriz[i + 1][j + 1] == 1) {
+                        && matriz[i + 1][j + 1] == 1
+                        && matriz[i][j]==0) {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
+                    return coordenadas;
                 }
             }
         }
