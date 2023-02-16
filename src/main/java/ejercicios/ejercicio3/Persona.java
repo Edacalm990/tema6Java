@@ -18,7 +18,7 @@ Métodos:
 - Constructores (por defecto y parametrizado)
 - Método toString(), que devolverá en un String los atributos de persona concatenados.
 */
-public class Persona {
+public class Persona implements Comparable <Persona>{
     private String nombre;
     private String nif;
     private int edad;
@@ -86,6 +86,11 @@ public class Persona {
         }
         final Persona other = (Persona) obj;
         return Objects.equals(this.nif, other.nif);
+    }
+
+    @Override
+    public int compareTo(Persona o) {
+        return this.nif.compareTo(o.getNif());
     }
     
 }

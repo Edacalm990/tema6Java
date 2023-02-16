@@ -8,7 +8,8 @@ package ejercicios.ejercicio3;
  *
  * @author eli
  */
-public class Jardinero extends Empleado implements Comparable{
+public class Jardinero extends Empleado implements Comparable<Persona> {
+
     private int antiguedad;
 
     public Jardinero() {
@@ -54,9 +55,13 @@ public class Jardinero extends Empleado implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        return -1;
+    public int compareTo(Persona o) {
+        if (o instanceof Jardinero) {
+            return Integer.compare(this.antiguedad, ((Jardinero) o).antiguedad);
+        } else {
+            return -1;
+        }
+
     }
-    
-    
+
 }
