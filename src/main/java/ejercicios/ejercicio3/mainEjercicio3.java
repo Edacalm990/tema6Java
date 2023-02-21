@@ -4,6 +4,8 @@
  */
 package ejercicios.ejercicio3;
 
+import java.util.Iterator;
+
 /**
  *
  * @author eli
@@ -41,8 +43,18 @@ pero no al contrario. Ejecuta los métodos toString() de cada uno de los objetos
 public class mainEjercicio3 {
     public static void main(String[] args) {
         Persona personaUno= new Persona("pepe", "12345", 25);
-        Empleado empleadoUno= new Empleado(1200, "Maria", "123456789", 35);
-        Programador programadorUno= new Programador(CategoriaProgramador.ANALISTA, 1100, "Gabriel", "123FVG", 20);
+        Persona empleadoUno= new Jardinero(25, 2000, "Pepe", "1234g", 54);
+        Persona programadorUno= new Programador(CategoriaProgramador.ANALISTA, 1100, "Gabriel", "123FVG", 20);
+        
+        //ITERATOR
+//        Iterator<Integer> it = lista.iterator();
+//        while(it.hasNext()){
+//            Integer aux=it.next();
+//            if (aux==2){
+//            it.remove();
+//            }
+//        }
+        
         
         personaUno.toString();
         System.out.println("""

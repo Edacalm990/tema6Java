@@ -50,6 +50,11 @@ public class Programador extends Empleado{
                        super.toString(),
                        this.getCategoria());
     }
+
+    @Override
+    public void aumentarSalario() {
+        this.setSalario(this.getSalario()*1.3);
+    }
     
     
     

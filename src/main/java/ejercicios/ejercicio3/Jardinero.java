@@ -64,4 +64,9 @@ public class Jardinero extends Empleado implements Comparable<Persona> {
 
     }
 
+    @Override
+    public void aumentarSalario() {
+        this.setSalario(this.getSalario() * 1.2);
+
+    }
 }

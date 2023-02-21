@@ -18,7 +18,7 @@ Métodos:
 - Método toString(), que sobrescribe el método toString() de la superclase, añadiendo además de los atributos de persona los propios de empleado.
 - Un método que permita aumentar el salario en una cantidad que sería pasada como parámetro.
 */
-public class Empleado extends Persona{
+public abstract class Empleado extends Persona{
     private double salario;
 
     public Empleado() {
@@ -29,7 +29,7 @@ public class Empleado extends Persona{
         this.salario = salario;
     }
     
-    
+    public abstract void aumentarSalario();
 
     public double getSalario() {
         return salario;
