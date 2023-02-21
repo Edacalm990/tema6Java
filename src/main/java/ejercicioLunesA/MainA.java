@@ -32,19 +32,26 @@ public class MainA {
 
     }
 
+    // método que pido un número y lo compruebo con una expresión regular
+    // se pide un numero con JOption, podía haber usado un try catch pero me apetecía probar las expresiones regulares
     public static String pedirNumero() {
         String texto = "";
+        // creo un patrón que debe empezar y terminar con un digito
         Pattern pattern = Pattern.compile("^\\d+$");
+        // con la clase match comprobaremos si se cumple el patrón
         Matcher mach = null;
 
         do {
             texto = JOptionPane.showInputDialog("Dame un número");
+            // compruebo si se cumple el patrón sino se repite hasta que introduzca un dato correcto
             mach = pattern.matcher(texto);
         } while (!mach.matches());
         return texto;
     }
 
+    // método que comprueba si un array de chars es capicua de forma recursiva
     public static boolean esCapicua(char[] array, int posicion) {
+        // si llegamos a la mitad sin un false sabemos que es capicua
         if (posicion >=array.length/2) {
             return true;
         } else if (array[posicion] == array[array.length - posicion - 1]) {
