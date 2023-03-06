@@ -37,7 +37,8 @@ public class MainA {
     public static String pedirNumero() {
         String texto = "";
         // creo un patrón que debe empezar y terminar con un digito
-        Pattern pattern = Pattern.compile("^\\d+$");
+        //Pattern pattern = Pattern.compile("^\\d+$");
+        Pattern pattern = Pattern.compile("[0-9]+");
         // con la clase match comprobaremos si se cumple el patrón
         Matcher mach = null;
 

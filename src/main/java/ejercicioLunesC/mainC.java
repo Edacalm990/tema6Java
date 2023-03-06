@@ -19,6 +19,7 @@ public class mainC {
     public static Random random = new Random();
 
     public static void main(String[] args) {
+        // conversion implicita
         Persona uno = new Policia(123456, "77454367F", "Rodolfo", "Martinez", 600000000, "Estepona", "soypolicia@gmail.com");
         Persona dos = new Policia(789234, "45464748F", "Julia", "Martinez", 600000006, "Estepona", "soyjulia@gmail.com");
         Persona tres = new Delincuente(true, 0, "89654567", "Juan", "Vega", 0, "Madrid", "");
