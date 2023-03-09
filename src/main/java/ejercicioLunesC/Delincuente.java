@@ -35,6 +35,7 @@ public class Delincuente extends Persona{
     return false;
     }
 
+    // sobreescrito
     // toString que llama al metodo String del padre y lo completa con los atributos de clase
     @Override
     public String toString() {
