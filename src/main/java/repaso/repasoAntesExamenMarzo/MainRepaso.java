@@ -5,6 +5,7 @@
 package repaso.repasoAntesExamenMarzo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,8 @@ public class MainRepaso {
             System.out.println(get.getListaPasajeros().size());
         }
         
+        Collections.sort(listaVuelos, (p1,p2)->p1.getDestino().compareTo(p2.getDestino()));
+        
         Map listaDestinoNumPasajeros= listaNumPasajeros(listaVuelos);
         Map listaCodigoPasajero = listaPasajeros(listaVuelos);
         
@@ -52,7 +55,6 @@ public class MainRepaso {
     public static Map listaNumPasajeros(List<Vuelo>vuelos){
         SortedMap<Ciudades, Integer> listaNumPasajero = new TreeMap<>();
         
-        
             for (Vuelo vuelo : vuelos) {
                 if (listaNumPasajero.containsKey(vuelo.getDestino())){
                     listaNumPasajero.put(vuelo.getDestino(), (listaNumPasajero.get(vuelo.getDestino()))+vuelo.getListaPasajeros().size());
@@ -60,6 +62,8 @@ public class MainRepaso {
                 listaNumPasajero.put(vuelo.getDestino(), vuelo.getListaPasajeros().size());
                 }
         }
+            
+        
         
         return listaNumPasajero;  
     }
@@ -67,14 +71,8 @@ public class MainRepaso {
     public static Map listaPasajeros (List<Vuelo>vuelos){
         SortedMap<Integer, Set<Pasajero>> listaPasajero = new TreeMap<>();
             for (Vuelo vuelo : vuelos) {
-                Integer codigo= vuelo.getCodigo();
-                List<Pasajero> lista = vuelo.getListaPasajeros();
-                Set<Pasajero> setPasajeros= new HashSet<>();
-                for (int i = 0; i < lista.size(); i++) {
-                    Pasajero pasajero= lista.get(i);
-                    setPasajeros.add(pasajero);
-                }
-                
+                Set<Pasajero> setPasajeros= new HashSet<>(vuelo.getListaPasajeros());
+               
               listaPasajero.put(vuelo.getCodigo(), setPasajeros);
         }
            
