@@ -10,43 +10,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author eli
  */
 public class MainRepasoDia2 {
+
     public static void main(String[] args) {
-        List<Sofa>sofas= new ArrayList<>();
-        Map<Sofa, Integer> mapSofas=new TreeMap<>();
+
+        List<Sofa> sofas = new ArrayList<>();
+        Map<Sofa, Integer> mapSofas = new TreeMap<>();
         //Map<Sofa, Integer> mapSillas=new HashMap<>();
         for (int i = 0; i < 10; i++) {
             sofas.add(new Sofa());
         }
         for (int i = 0; i < sofas.size(); i++) {
-            mapSofas.put(sofas.get(i), i) ;
+            mapSofas.put(sofas.get(i), i);
         }
-        
-        
+
         for (Map.Entry<Sofa, Integer> entry : mapSofas.entrySet()) {
             Object key = entry.getKey();
             Object val = entry.getValue();
             System.out.println("""
                                Clave %s
                                Valor %s
-                               """.formatted(key.toString(),val));
+                               """.formatted(key.toString(), val));
         }
         CriterioPeso criterio = new CriterioPeso();
         // la variable criterio es de tipo CriterioPeso, Object, Comparator
         Collections.sort(sofas, criterio);
-        sofas.forEach(x->System.out.println(x));
+        sofas.forEach(x -> System.out.println(x));
         System.out.println("");
         Collections.sort(sofas);
-        sofas.forEach(x->System.out.println(x));
+        sofas.forEach(x -> System.out.println(x));
         System.out.println("");
         // Comparator<Sofa> criterio = (a,b)->Integer.compare(a.getPeso(), b.getPeso());
-        Collections.sort(sofas, (a,b)->Integer.compare(a.getPeso(), b.getPeso()));
-        sofas.forEach(x->System.out.println(x));
-        
+        Collections.sort(sofas, (a, b) -> Integer.compare(a.getPeso(), b.getPeso()));
+        sofas.forEach(x -> System.out.println(x));
+
     }
+
+    
 }
