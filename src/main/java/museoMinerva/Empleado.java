@@ -68,7 +68,7 @@ public abstract class Empleado implements Comparable<Empleado> {
 
     @Override
     public int compareTo(Empleado o) {
-        return this.getNif().compareToIgnoreCase(((Empleado)o).getNif());
+        return this.getNif().compareToIgnoreCase(o.getNif());
     }
     
 }

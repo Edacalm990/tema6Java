@@ -5,10 +5,8 @@
 package museoMinerva;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -19,7 +17,6 @@ import org.apache.commons.lang3.RandomStringUtils;
  */
 public class Museo {
 
-    private static Random random = new Random();
     String nombre;
     String direccion;
     List<Empleado> listaEmpleados;
@@ -31,7 +28,13 @@ public class Museo {
         listaSalas = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
     }
+    
+    public void buscarEmpleadoContain(String nif){
+        System.out.println(this.listaEmpleados.contains(new C_Escultura(nif)));
+    
+    }
 
+    // método que añade una sala al museo
     public void addSala(String tipo) {
         boolean condicion = (!tipo.equalsIgnoreCase("fija")) && (!tipo.equalsIgnoreCase("temporal"));
         if (!condicion) {
@@ -46,6 +49,7 @@ public class Museo {
         }
     }
     
+    // método que devuelve una coleccion única de obras
     public Set<Obra> listaObrasMuseo(){
         Set<Obra> aux= new TreeSet<>();
         for (int i = 0; i < listaSalas.size(); i++) {
@@ -54,6 +58,7 @@ public class Museo {
         return aux;
     }
 
+    // método que añade una obra a una sala
     public void addObra(int codigoSala, Obra obra) {
         Sala aux = buscarSala(codigoSala);
         if (aux != null) {
@@ -61,6 +66,7 @@ public class Museo {
         }
     }
 
+    // método privado que busca una sala
     private Sala buscarSala(int codigoSala) {
         for (int i = 0; i < listaSalas.size(); i++) {
             Sala get = listaSalas.get(i);
@@ -71,34 +77,23 @@ public class Museo {
         return null;
     }
 
+    // método que elimina una sala
     public void quitarSala(int codigoSala) {
         listaSalas.remove(buscarSala(codigoSala));
     }
 
+    // método que contrata un empleado
     public void contratar(Empleado empleado) {
-        listaEmpleados.add(empleado);
+        this.listaEmpleados.add(empleado);
     }
 
+    // método que despide a un empleado por nif
     public boolean despedir(String nif) {
         return listaEmpleados.remove(buscarEmpleado(nif));
     }
 
+    // método privado que busca un empleado
     private Empleado buscarEmpleado(String nif) {
-        // el indexof no me funciona y no se porque, he probado a ordenar la lista primero
-        //      El comparable lo tengo en empleado con el siguiente codigo:
-        /*
-    @Override
-    public int compareTo(Empleado o) {
-        return this.getNif().compareToIgnoreCase(((Empleado)o).getNif());
-        También he probrado así
-        return this.getNif().compareToIgnoreCase(o.getNif());
-    }
-         */
-        //        Collections.sort(listaEmpleados);
-        //        Empleado aux = new Monitor(nif);
-        //        listaEmpleados.indexOf(aux)
-        //         listaEmpleados.indexOf((Empleado)aux)
-
         for (int i = 0; i < listaEmpleados.size(); i++) {
             Empleado get = listaEmpleados.get(i);
             if (get.getNif().equalsIgnoreCase(nif)) {
@@ -108,6 +103,7 @@ public class Museo {
         return null;
     }
 
+    // añadir salario a un empleado
     public void addSalario(double salario, String nif) {
         Empleado aux = buscarEmpleado(nif);
 
@@ -116,6 +112,7 @@ public class Museo {
         }
     }
 
+    // quitar el salario
     public void quitarSalario(double salario, String nif) {
         Empleado aux = buscarEmpleado(nif);
         if (aux != null) {
@@ -123,9 +120,34 @@ public class Museo {
         }
     }
     
+    // método privado para buscar una obra
+    private Obra buscarObra(int codObra){
+        Iterator<Obra> iterador = listaObrasMuseo().iterator();
+        while(iterador.hasNext()){ // No existe orden 
+            Obra o = iterador.next();
+            if(o.getId()==codObra){
+            return o;
+            }
+        }
+        return null;
+    }
+    
+    // método publico que llama al método restaurarObra de los conservadores
     public void restaurarObra(String nif, int codObra){
-        boolean r=listaObrasMuseo().contains(new Pictorica(codObra));
-        System.out.println(r);
+        
+        Obra obra = buscarObra(codObra);
+        Empleado aux= buscarEmpleado(nif);
+        
+        if(obra instanceof Pictorica && aux instanceof C_Pintura){
+            ((C_Pintura)aux).restaurarObra(obra);
+        } else if(obra instanceof Escultorica && aux instanceof C_Escultura){
+            ((C_Escultura)aux).restaurarObra(obra);
+        }
+        
+    }
+    
+    public void activarSensores(int codSala, int sensor, int valor){
+        buscarSala(codSala).saltarAlarma(sensor, valor);
     }
 
     @Override
