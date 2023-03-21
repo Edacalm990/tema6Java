@@ -6,27 +6,22 @@ package museoMinerva;
 
 /**
  *
- * @author venganzaalchocolate
+ * @author eli
  */
-public final class Vigilante extends Empleado{
-
-    public Vigilante(String nif) {
+public class Pintura extends Conservadores {
+    
+    public Pintura(String nif) {
         super(nif);
     }
-
-//    @Override
-//    public int compareTo(Empleado o) {
-//        return this.getNif().compareToIgnoreCase(o.getNif());
-//    }
-
-    @Override
+    
+     @Override
     public String toString() {
         return """
                
-               Vigilante
+               Conservador Pictorico
                %s
                """.formatted(super.toString());
     }
-    
-    
+
+   
 }

@@ -8,17 +8,11 @@ package museoMinerva;
  *
  * @author venganzaalchocolate
  */
-public class Monitor extends Empleado {
-
+public final class Monitor extends Empleado {
     
     public Monitor(String nif) {
         super(nif);
     }
-
-//    @Override
-//    public int compareTo(Empleado o) {
-//        return this.getNif().compareToIgnoreCase(o.getNif());
-//    }
 
     @Override
     public String toString() {

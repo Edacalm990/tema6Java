@@ -27,18 +27,36 @@ public class Museo {
         this.direccion = RandomStringUtils.randomAlphabetic(20);
         listaSalas = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
-        addSala(10);
     }
 
-    private void addSala(int cantidad) {
-        int contador = 0;
-        for (int i = 0; i < cantidad; i++) {
-            if (random.nextBoolean()) {
-                listaSalas.add(new Fija(contador++));
+    public void addSala(String tipo) {
+        boolean condicion = (!tipo.equalsIgnoreCase("fija")) && (!tipo.equalsIgnoreCase("temporal"));
+        do {
+            if (!condicion) {
+                if (tipo.equalsIgnoreCase("fija")) {
+                    listaSalas.add(new Fija(listaSalas.size()));
+                } else {
+                    listaSalas.add(new Temporal(listaSalas.size()));
+                };
             } else {
-                listaSalas.add(new Temporal(contador++));
+                System.out.println("puede ser 'fija' o 'temporal'");
+            }
+        } while (condicion);
+
+    }
+
+    private Sala buscarSala(int codigoSala) {
+        for (int i = 0; i < listaSalas.size(); i++) {
+            Sala get = listaSalas.get(i);
+            if (get.getCodSala() == codigoSala) {
+                return get;
             }
         }
+        return null;
+    }
+
+    public void quitarSala(int codigoSala) {
+        listaSalas.remove(buscarSala(codigoSala));
     }
 
     public void contratar(Empleado empleado) {
@@ -59,12 +77,11 @@ public class Museo {
         También he probrado así
         return this.getNif().compareToIgnoreCase(o.getNif());
     }
-        */
+         */
         //        Collections.sort(listaEmpleados);
         //        Empleado aux = new Monitor(nif);
         //        listaEmpleados.indexOf(aux)
         //         listaEmpleados.indexOf((Empleado)aux)
-
 
         for (int i = 0; i < listaEmpleados.size(); i++) {
             Empleado get = listaEmpleados.get(i);

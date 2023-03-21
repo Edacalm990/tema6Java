@@ -15,12 +15,20 @@ import java.util.Random;
 public abstract class Sala {
     private static Random random = new Random();
     private int codSala;
-    List<Obra> listaObras;
+    private List<Obra> listaObras;
+    private Sensor [] sensores;
 
     public Sala(int codSala) {
         this.codSala = codSala;
         listaObras= new ArrayList<>();
         addObras(random.nextInt(1, 10));
+        crearSensor();
+    }
+    
+    private void crearSensor(){
+        sensores=new Sensor [2];
+        sensores[0]= new Temperatura(35.5, 0, codSala*10+1);
+        sensores[1]= new Humedad(70, 20, codSala*10+2);
     }
 
     private void addObras(int cantidad) {

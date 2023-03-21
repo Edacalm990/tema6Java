@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author venganzaalchocolate
  */
-public class Temporal extends Sala {
+public final class Temporal extends Sala {
 
     private LocalDate fechaInicio;
     private LocalDate fechaFin;

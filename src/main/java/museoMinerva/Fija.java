@@ -8,7 +8,7 @@ package museoMinerva;
  *
  * @author venganzaalchocolate
  */
-public class Fija extends Sala {
+public final class Fija extends Sala {
     private boolean estado;
     
     public Fija(int codSala) {
