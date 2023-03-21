@@ -6,8 +6,11 @@ package museoMinerva;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -31,18 +34,31 @@ public class Museo {
 
     public void addSala(String tipo) {
         boolean condicion = (!tipo.equalsIgnoreCase("fija")) && (!tipo.equalsIgnoreCase("temporal"));
-        do {
-            if (!condicion) {
-                if (tipo.equalsIgnoreCase("fija")) {
-                    listaSalas.add(new Fija(listaSalas.size()));
-                } else {
-                    listaSalas.add(new Temporal(listaSalas.size()));
-                };
+        if (!condicion) {
+            if (tipo.equalsIgnoreCase("fija")) {
+                listaSalas.add(new Fija(listaSalas.size()));
             } else {
-                System.out.println("puede ser 'fija' o 'temporal'");
-            }
-        } while (condicion);
+                listaSalas.add(new Temporal(listaSalas.size()));
+            };
+        } else {
+            System.out.println("No se ha añadido sala, esta solo puede ser 'fija' o 'temporal'");
 
+        }
+    }
+    
+    public Set<Obra> listaObrasMuseo(){
+        Set<Obra> aux= new TreeSet<>();
+        for (int i = 0; i < listaSalas.size(); i++) {
+            aux.addAll(listaSalas.get(i).getListaObras());
+        }
+        return aux;
+    }
+
+    public void addObra(int codigoSala, Obra obra) {
+        Sala aux = buscarSala(codigoSala);
+        if (aux != null) {
+            aux.addObra(obra);
+        }
     }
 
     private Sala buscarSala(int codigoSala) {
@@ -106,14 +122,19 @@ public class Museo {
             aux.setSalario(aux.getSalario() - salario);
         }
     }
+    
+    public void restaurarObra(String nif, int codObra){
+        boolean r=listaObrasMuseo().contains(new Pictorica(codObra));
+        System.out.println(r);
+    }
 
     @Override
     public String toString() {
         String salas = """
-                     Lista de Salas
+                     ------------------Lista de Salas------------------
                      """;
         String empleados = """
-                         Lista de Empleados
+                         ------------------Lista de Empleados------------------
                          """;
         for (int i = 0; i < listaEmpleados.size(); i++) {
             empleados += listaEmpleados.get(i).toString();
@@ -126,6 +147,7 @@ public class Museo {
         String tmp = """
                    Museo %s
                    Direccion: %s
+                   
                    %s
                    %s
                    """.formatted(nombre, direccion, salas, empleados);

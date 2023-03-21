@@ -14,4 +14,12 @@ public class Escultorica extends Obra {
         super(id, ObrasEscultoricas.nombreAleatorio().getNombre());
     }
    
+     @Override
+    public String toString() {
+        return """
+               %s
+               Soy una obra escultorica
+               """.formatted(super.toString());
+    }
 }
+   

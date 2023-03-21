@@ -5,23 +5,21 @@
 package museoMinerva;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author venganzaalchocolate
  */
 public abstract class Sala {
-    private static Random random = new Random();
     private int codSala;
-    private List<Obra> listaObras;
+    private Set<Obra> listaObras;
     private Sensor [] sensores;
 
     public Sala(int codSala) {
         this.codSala = codSala;
-        listaObras= new ArrayList<>();
-        addObras(random.nextInt(1, 10));
+        listaObras= new HashSet<>();
         crearSensor();
     }
     
@@ -31,17 +29,22 @@ public abstract class Sala {
         sensores[1]= new Humedad(70, 20, codSala*10+2);
     }
 
-    private void addObras(int cantidad) {
-        int contador = 0;
-        
-        for (int i = 0; i < cantidad; i++) {
-            if (random.nextBoolean()) {
-                listaObras.add(new Pictorica(contador++));
-            } else {
-                listaObras.add(new Escultorica(contador++));
-            }
-        }
+    public void addObra(Obra obra) {
+        if (!listaObras.contains(obra)){
+        listaObras.add(obra);
+        } else {
+            System.out.println("Esta obra no se puede añadir porque ya hay una obra con ese id");
+        }  
     }
+
+    public Set<Obra> getListaObras() {
+        return listaObras;
+    }
+
+    public Sensor[] getSensores() {
+        return sensores;
+    }
+    
 
     public int getCodSala() {
         return codSala;

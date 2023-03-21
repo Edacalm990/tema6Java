@@ -14,4 +14,5 @@ public abstract class Conservadores extends Empleado implements Restauradores{
         super(nif);
     }
     
+   
 }

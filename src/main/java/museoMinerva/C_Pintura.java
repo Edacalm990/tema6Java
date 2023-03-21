@@ -4,24 +4,34 @@
  */
 package museoMinerva;
 
+import java.time.LocalDate;
+import java.util.SortedMap;
+
 /**
  *
  * @author eli
  */
-public class Escultura extends Conservadores {
+public class C_Pintura extends Conservadores {
     
-    public Escultura(String nif) {
+    SortedMap<Obra, LocalDate> listaObras;
+    
+    public C_Pintura(String nif) {
         super(nif);
     }
     
-    @Override
+     @Override
     public String toString() {
         return """
                
-               Conservador Escultorico
+               Conservador Pictorico
                %s
                """.formatted(super.toString());
     }
 
-  
+     @Override
+    public void restaurarObra(Obra obra) {
+        listaObras.put(obra, LocalDate.now());
+    }
+
+   
 }

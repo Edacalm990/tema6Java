@@ -9,6 +9,7 @@ package museoMinerva;
  * @author eli
  */
 public interface Restauradores {
-
+    
+    public abstract void restaurarObra(Obra obra);
     
 }

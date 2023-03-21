@@ -13,10 +13,16 @@ public class Pictorica extends Obra {
     public Pictorica(int id) {
         super(id, ObrasPictoricas.nombreAleatorio().getNombre());
     }
-    
+
     @Override
-    public int compareTo(Obra o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String toString() {
+        return """
+               %s
+               Soy una obra pictorica
+               """.formatted(super.toString());
     }
+
+    
+    
     
 }

@@ -56,12 +56,11 @@ public abstract class Obra implements Comparable<Obra>{
         return """
                Nombre: %s
                Autor: %s
-               Codigo: %s
-               """.formatted(nombre, autor, id);
+               Codigo: %s""".formatted(nombre, autor, id);
     }
     
    @Override
     public int compareTo(Obra o) {
-        return Integer.compare(id, o.id);
+        return Integer.compare(((Obra)this).id, ((Obra)o).id);
     }
 }
