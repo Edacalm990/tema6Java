@@ -15,14 +15,13 @@ public abstract class Empleado extends Persona {
     private String numSeguridadSocial;
     private double salario;
     
-    
-    public Empleado(String nombre, String apellidos) {
-        super(nombre, apellidos);
+    // todos lo atributos son aleatorios por tanto el contructor está vacio e intancia de forma random según cada atributo
+    public Empleado() {
         numSeguridadSocial=RandomStringUtils.randomAlphanumeric(10);
-        salario=Double.parseDouble(RandomStringUtils.randomNumeric(3, 5));
+        salario=Double.parseDouble(RandomStringUtils.randomNumeric(4));
     }
     
-    
+    // método abstracto para calcular el IRPF
     public abstract double calcularIRPF();
 
     public String getNumSeguridadSocial() {
@@ -32,4 +31,14 @@ public abstract class Empleado extends Persona {
     public double getSalario() {
         return salario;
     }
+
+    @Override
+    public String toString() {
+        return """
+               %s 
+               Nº seguridad Social: %s
+               Salario: %s € """.formatted(super.toString(), numSeguridadSocial,  salario);
+    }
+    
+    
 }

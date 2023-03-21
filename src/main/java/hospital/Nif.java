@@ -71,4 +71,12 @@ public class Nif {
     final public void renovarDni( LocalDate fechaSolicitudRenovacion){
         this.fechaCaducidad=fechaSolicitudRenovacion.plusYears(10);
     }
+
+    @Override
+    public String toString() {
+        return """
+               %s-%s""".formatted(numero, letra);
+    }
+    
+    
 }

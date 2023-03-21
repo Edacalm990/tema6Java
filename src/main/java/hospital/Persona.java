@@ -16,58 +16,35 @@ public abstract class Persona{
     private String apellidos;
     private Nif nif;
 
-    public Persona(String nombre, String apellidos) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
+    // todos lo atributos son aleatorios por tanto el contructor está vacio e intancia de forma random según cada atributo
+    public Persona() {
+        this.nombre = Nombres.nombreAleatorio().toString();
+        this.apellidos = Apellidos.apellidoAleatorio().toString();
         this.nif = new Nif();
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public Nif getNif() {
         return nif;
     }
 
-    public void setNif(Nif nif) {
-        this.nif = nif;
+    public String getNombre() {
+        return nombre;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+    
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.nif);
-        return hash;
+    public String toString() {
+        return """
+               Nombre: %s
+               Apellido: %s
+               Nif: %s""".formatted(nombre, apellidos, nif.toString());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Persona other = (Persona) obj;
-        return Objects.equals(this.nif, other.nif);
+    // método para renovar el NIF
+     public void renovarNif(LocalDate fechaSolicitud) {
+       getNif().renovarDni(fechaSolicitud);
     }
-
-        
-    public abstract void renovarNif(LocalDate fechaSolicitud);
 }
