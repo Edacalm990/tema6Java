@@ -4,6 +4,8 @@
  */
 package museoMinerva;
 
+import java.util.Collections;
+
 /**
  *
  * @author venganzaalchocolate
@@ -22,7 +24,8 @@ public class main {
         
         // mirar porque no funciona
         System.out.println("Comprobamos que funciona el método despedir despidiendo a 78945632J");
-        System.out.println(museo.despedir("78945632J"));
+
+        System.out.println(museo.despedir("40432934G"));
         System.out.println(museo.toString());
     }
 }

@@ -5,6 +5,7 @@
 package museoMinerva;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -24,8 +25,8 @@ public class Museo {
     public Museo() {
         this.nombre = NombresMuseos.nombreMuseosAleatorio().toString();
         this.direccion = RandomStringUtils.randomAlphabetic(20);
-        listaSalas=new ArrayList<>();
-        listaEmpleados= new ArrayList<>();
+        listaSalas = new ArrayList<>();
+        listaEmpleados = new ArrayList<>();
         addSala(10);
     }
 
@@ -45,20 +46,38 @@ public class Museo {
     }
 
     public boolean despedir(String nif) {
-        return listaEmpleados.remove(nif);
+        return listaEmpleados.remove(buscarEmpleado(nif));
     }
 
     private Empleado buscarEmpleado(String nif) {
-        int posicion = listaEmpleados.lastIndexOf(nif);
-        System.out.println(posicion);
-        if (posicion != -1) {
-            return listaEmpleados.get(posicion);
+        // el indexof no me funciona y no se porque, he probado a ordenar la lista primero
+        //      El comparable lo tengo en empleado con el siguiente codigo:
+        /*
+    @Override
+    public int compareTo(Empleado o) {
+        return this.getNif().compareToIgnoreCase(((Empleado)o).getNif());
+        También he probrado así
+        return this.getNif().compareToIgnoreCase(o.getNif());
+    }
+        */
+        //        Collections.sort(listaEmpleados);
+        //        Empleado aux = new Monitor(nif);
+        //        listaEmpleados.indexOf(aux)
+        //         listaEmpleados.indexOf((Empleado)aux)
+
+
+        for (int i = 0; i < listaEmpleados.size(); i++) {
+            Empleado get = listaEmpleados.get(i);
+            if (get.getNif().equalsIgnoreCase(nif)) {
+                return get;
+            }
         }
         return null;
     }
 
     public void addSalario(double salario, String nif) {
         Empleado aux = buscarEmpleado(nif);
+
         if (aux != null) {
             aux.setSalario(aux.getSalario() + salario);
         }

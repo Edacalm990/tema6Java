@@ -66,10 +66,9 @@ public abstract class Empleado implements Comparable<Empleado> {
         this.salario = salario;
     }
 
-
     @Override
     public int compareTo(Empleado o) {
-        return this.getNif().compareToIgnoreCase(o.getNif());
+        return this.getNif().compareToIgnoreCase(((Empleado)o).getNif());
     }
     
 }
