@@ -30,7 +30,7 @@ public class Museo {
     }
     
     public void buscarEmpleadoContain(String nif){
-        System.out.println(this.listaEmpleados.contains(new C_Escultura(nif)));
+        System.out.println(this.listaEmpleados.contains(new C_Pintura(nif)));
     
     }
 
