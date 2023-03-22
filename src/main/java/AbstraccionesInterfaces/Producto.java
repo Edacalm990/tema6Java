@@ -59,11 +59,11 @@ public abstract class Producto {
     @Override
     public String toString() {
         return """
+               
                Codigo: %s
                Precio: %s
                Iva: %s
-               Descripcion: %s
-               """.formatted(codigo, precio, iva, descripcion);
+               Descripcion: %s""".formatted(codigo, precio, iva, descripcion);
     }
 
     @Override

@@ -35,8 +35,7 @@ public abstract class Ropa extends Producto implements SeEnvia {
     public String toString() {
         return """
                %s
-               Marca: %s
-               """.formatted(super.toString(), marca);
+               Marca: %s""".formatted(super.toString(), marca);
     }
     
     @Override

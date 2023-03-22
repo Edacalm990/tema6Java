@@ -37,8 +37,7 @@ public abstract class Libro extends Producto implements Comparable<Libro>{
     public String toString() {
         return """
                %s
-               Isbn: %s
-               """.formatted(super.toString(), isbn);
+               Isbn: %s""".formatted(super.toString(), isbn);
     }
 
     @Override
@@ -56,9 +55,12 @@ public abstract class Libro extends Producto implements Comparable<Libro>{
         if (obj == null) {
             return false;
         }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
+        
+        // He cambiado el equals para que el contain funcione con cualquier tipo de Libro
+        if (getClass() != obj.getClass() && LibroDigital.class!= obj.getClass() && LibroPapel.class!= obj.getClass()) {
+            return false;
+        }
+        
         final Libro other = (Libro) obj;
         return Objects.equals(this.isbn, other.isbn);
     }
